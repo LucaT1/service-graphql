@@ -1,5 +1,6 @@
 const { graphqlExpress } = require('apollo-server-express')
 const { makeExecutableSchema } = require('graphql-tools')
+const { json } = require('body-parser')
 
 const typeDefs = `
   type Query {
@@ -20,4 +21,4 @@ const SCHEMA = makeExecutableSchema({
   resolvers: resolvers
 })
 
-module.exports = graphqlExpress({ schema: SCHEMA })
+module.exports = [ json(), graphqlExpress({ schema: SCHEMA }) ]
